@@ -1,3 +1,7 @@
+2010-02-03 --:-- dx-mon
+
+	* Rewritten the X11 font loader to get rid of all the PangoX calls
+
 2006-01-29 15:26  tshead
 
 	* GtkGLExt 1.1.0

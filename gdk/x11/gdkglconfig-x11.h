@@ -24,37 +24,37 @@
 
 G_BEGIN_DECLS
 
-typedef struct _GdkGLConfigImplX11      GdkGLConfigImplX11;
+typedef struct _GdkGLConfigImplX11 GdkGLConfigImplX11;
 typedef struct _GdkGLConfigImplX11Class GdkGLConfigImplX11Class;
 
-#define GDK_TYPE_GL_CONFIG_IMPL_X11              (gdk_gl_config_impl_x11_get_type ())
-#define GDK_GL_CONFIG_IMPL_X11(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), GDK_TYPE_GL_CONFIG_IMPL_X11, GdkGLConfigImplX11))
-#define GDK_GL_CONFIG_IMPL_X11_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), GDK_TYPE_GL_CONFIG_IMPL_X11, GdkGLConfigImplX11Class))
-#define GDK_IS_GL_CONFIG_IMPL_X11(object)        (G_TYPE_CHECK_INSTANCE_TYPE ((object), GDK_TYPE_GL_CONFIG_IMPL_X11))
-#define GDK_IS_GL_CONFIG_IMPL_X11_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), GDK_TYPE_GL_CONFIG_IMPL_X11))
-#define GDK_GL_CONFIG_IMPL_X11_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), GDK_TYPE_GL_CONFIG_IMPL_X11, GdkGLConfigImplX11Class))
+#define GDK_TYPE_GL_CONFIG_IMPL_X11              (gdk_gl_config_impl_x11_get_type())
+#define GDK_GL_CONFIG_IMPL_X11(object)           (G_TYPE_CHECK_INSTANCE_CAST((object), GDK_TYPE_GL_CONFIG_IMPL_X11, GdkGLConfigImplX11))
+#define GDK_GL_CONFIG_IMPL_X11_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST((klass), GDK_TYPE_GL_CONFIG_IMPL_X11, GdkGLConfigImplX11Class))
+#define GDK_IS_GL_CONFIG_IMPL_X11(object)        (G_TYPE_CHECK_INSTANCE_TYPE((object), GDK_TYPE_GL_CONFIG_IMPL_X11))
+#define GDK_IS_GL_CONFIG_IMPL_X11_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE((klass), GDK_TYPE_GL_CONFIG_IMPL_X11))
+#define GDK_GL_CONFIG_IMPL_X11_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS((obj), GDK_TYPE_GL_CONFIG_IMPL_X11, GdkGLConfigImplX11Class))
 
 struct _GdkGLConfigImplX11
 {
-  GdkGLConfig parent_instance;
+	GdkGLConfig parent_instance;
 
-  Display *xdisplay;
-  int screen_num;
-  XVisualInfo *xvinfo;
+	Display *xdisplay;
+	int screen_num;
+	XVisualInfo *xvinfo;
 
-  GdkScreen *screen;
+	GdkScreen *screen;
 
-  GdkColormap *colormap;
+	GdkColormap *colormap;
 
-  guint is_mesa_glx : 1;
+	guint is_mesa_glx : 1;
 };
 
 struct _GdkGLConfigImplX11Class
 {
-  GdkGLConfigClass parent_class;
+	GdkGLConfigClass parent_class;
 };
 
-GType gdk_gl_config_impl_x11_get_type (void);
+GType gdk_gl_config_impl_x11_get_type(void);
 
 G_END_DECLS
 

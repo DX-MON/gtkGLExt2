@@ -31,104 +31,100 @@ G_BEGIN_DECLS
  */
 typedef enum
 {
-  GDK_GL_MODE_RGB         = 0,
-  GDK_GL_MODE_RGBA        = 0,       /* same as RGB */
-  GDK_GL_MODE_INDEX       = 1 << 0,
-  GDK_GL_MODE_SINGLE      = 0,
-  GDK_GL_MODE_DOUBLE      = 1 << 1,
-  GDK_GL_MODE_STEREO      = 1 << 2,
-  GDK_GL_MODE_ALPHA       = 1 << 3,
-  GDK_GL_MODE_DEPTH       = 1 << 4,
-  GDK_GL_MODE_STENCIL     = 1 << 5,
-  GDK_GL_MODE_ACCUM       = 1 << 6,
-  GDK_GL_MODE_MULTISAMPLE = 1 << 7   /* not supported yet */
+	GDK_GL_MODE_RGB = 0,
+	GDK_GL_MODE_RGBA = 0, /* same as RGB */
+	GDK_GL_MODE_INDEX = 1 << 0,
+	GDK_GL_MODE_SINGLE = 0,
+	GDK_GL_MODE_DOUBLE = 1 << 1,
+	GDK_GL_MODE_STEREO = 1 << 2,
+	GDK_GL_MODE_ALPHA = 1 << 3,
+	GDK_GL_MODE_DEPTH = 1 << 4,
+	GDK_GL_MODE_STENCIL = 1 << 5,
+	GDK_GL_MODE_ACCUM = 1 << 6,
+	GDK_GL_MODE_MULTISAMPLE = 1 << 7 /* not supported yet */
 } GdkGLConfigMode;
 
 typedef struct _GdkGLConfigClass GdkGLConfigClass;
 
-#define GDK_TYPE_GL_CONFIG              (gdk_gl_config_get_type ())
-#define GDK_GL_CONFIG(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), GDK_TYPE_GL_CONFIG, GdkGLConfig))
-#define GDK_GL_CONFIG_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), GDK_TYPE_GL_CONFIG, GdkGLConfigClass))
-#define GDK_IS_GL_CONFIG(object)        (G_TYPE_CHECK_INSTANCE_TYPE ((object), GDK_TYPE_GL_CONFIG))
-#define GDK_IS_GL_CONFIG_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), GDK_TYPE_GL_CONFIG))
-#define GDK_GL_CONFIG_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), GDK_TYPE_GL_CONFIG, GdkGLConfigClass))
+#define GDK_TYPE_GL_CONFIG              (gdk_gl_config_get_type())
+#define GDK_GL_CONFIG(object)           (G_TYPE_CHECK_INSTANCE_CAST((object), GDK_TYPE_GL_CONFIG, GdkGLConfig))
+#define GDK_GL_CONFIG_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST((klass), GDK_TYPE_GL_CONFIG, GdkGLConfigClass))
+#define GDK_IS_GL_CONFIG(object)        (G_TYPE_CHECK_INSTANCE_TYPE((object), GDK_TYPE_GL_CONFIG))
+#define GDK_IS_GL_CONFIG_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE((klass), GDK_TYPE_GL_CONFIG))
+#define GDK_GL_CONFIG_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS((obj), GDK_TYPE_GL_CONFIG, GdkGLConfigClass))
 
 struct _GdkGLConfig
 {
-  GObject parent_instance;
+	GObject parent_instance;
 
-  gint layer_plane;
+	gint layer_plane;
 
-  gint n_aux_buffers;
+	gint n_aux_buffers;
 
-  gint n_sample_buffers;
+	gint n_sample_buffers;
 
-  guint is_rgba            : 1;
-  guint is_double_buffered : 1;
-  guint as_single_mode     : 1;
-  guint is_stereo          : 1;
-  guint has_alpha          : 1;
-  guint has_depth_buffer   : 1;
-  guint has_stencil_buffer : 1;
-  guint has_accum_buffer   : 1;
+	guint is_rgba : 1;
+	guint is_double_buffered : 1;
+	guint as_single_mode : 1;
+	guint is_stereo : 1;
+	guint has_alpha : 1;
+	guint has_depth_buffer : 1;
+	guint has_stencil_buffer : 1;
+	guint has_accum_buffer : 1;
 };
 
 struct _GdkGLConfigClass
 {
-  GObjectClass parent_class;
+	GObjectClass parent_class;
 };
 
-GType        gdk_gl_config_get_type               (void);
+GType gdk_gl_config_get_type(void);
 
 #ifndef GDK_MULTIHEAD_SAFE
-GdkGLConfig *gdk_gl_config_new                    (const int       *attrib_list);
+	GdkGLConfig *gdk_gl_config_new(const int *attrib_list);
 #endif /* GDK_MULTIHEAD_SAFE */
 
 #ifdef GDKGLEXT_MULTIHEAD_SUPPORT
-GdkGLConfig *gdk_gl_config_new_for_screen         (GdkScreen       *screen,
-                                                   const int       *attrib_list);
+	GdkGLConfig *gdk_gl_config_new_for_screen(GdkScreen *screen, const int *attrib_list);
 #endif /* GDKGLEXT_MULTIHEAD_SUPPORT */
 
 #ifndef GDK_MULTIHEAD_SAFE
-GdkGLConfig *gdk_gl_config_new_by_mode            (GdkGLConfigMode  mode);
+	GdkGLConfig *gdk_gl_config_new_by_mode(GdkGLConfigMode mode);
 #endif /* GDK_MULTIHEAD_SAFE */
 
 #ifdef GDKGLEXT_MULTIHEAD_SUPPORT
-GdkGLConfig *gdk_gl_config_new_by_mode_for_screen (GdkScreen       *screen,
-                                                   GdkGLConfigMode  mode);
+	GdkGLConfig *gdk_gl_config_new_by_mode_for_screen(GdkScreen *screen, GdkGLConfigMode mode);
 #endif /* GDKGLEXT_MULTIHEAD_SUPPORT */
 
-GdkScreen   *gdk_gl_config_get_screen             (GdkGLConfig     *glconfig);
+GdkScreen *gdk_gl_config_get_screen(GdkGLConfig *glconfig);
 
-gboolean     gdk_gl_config_get_attrib             (GdkGLConfig     *glconfig,
-                                                   int              attribute,
-                                                   int             *value);
+gboolean gdk_gl_config_get_attrib(GdkGLConfig *glconfig, int attribute, int *value);
 
-GdkColormap *gdk_gl_config_get_colormap           (GdkGLConfig     *glconfig);
+GdkColormap *gdk_gl_config_get_colormap(GdkGLConfig *glconfig);
 
-GdkVisual   *gdk_gl_config_get_visual             (GdkGLConfig     *glconfig);
+GdkVisual *gdk_gl_config_get_visual(GdkGLConfig *glconfig);
 
-gint         gdk_gl_config_get_depth              (GdkGLConfig     *glconfig);
+gint gdk_gl_config_get_depth(GdkGLConfig *glconfig);
 
-gint         gdk_gl_config_get_layer_plane        (GdkGLConfig     *glconfig);
+gint gdk_gl_config_get_layer_plane(GdkGLConfig *glconfig);
 
-gint         gdk_gl_config_get_n_aux_buffers      (GdkGLConfig     *glconfig);
+gint gdk_gl_config_get_n_aux_buffers(GdkGLConfig *glconfig);
 
-gint         gdk_gl_config_get_n_sample_buffers   (GdkGLConfig     *glconfig);
+gint gdk_gl_config_get_n_sample_buffers(GdkGLConfig *glconfig);
 
-gboolean     gdk_gl_config_is_rgba                (GdkGLConfig     *glconfig);
+gboolean gdk_gl_config_is_rgba(GdkGLConfig *glconfig);
 
-gboolean     gdk_gl_config_is_double_buffered     (GdkGLConfig     *glconfig);
+gboolean gdk_gl_config_is_double_buffered(GdkGLConfig *glconfig);
 
-gboolean     gdk_gl_config_is_stereo              (GdkGLConfig     *glconfig);
+gboolean gdk_gl_config_is_stereo(GdkGLConfig *glconfig);
 
-gboolean     gdk_gl_config_has_alpha              (GdkGLConfig     *glconfig);
+gboolean gdk_gl_config_has_alpha(GdkGLConfig *glconfig);
 
-gboolean     gdk_gl_config_has_depth_buffer       (GdkGLConfig     *glconfig);
+gboolean gdk_gl_config_has_depth_buffer(GdkGLConfig *glconfig);
 
-gboolean     gdk_gl_config_has_stencil_buffer     (GdkGLConfig     *glconfig);
+gboolean gdk_gl_config_has_stencil_buffer(GdkGLConfig *glconfig);
 
-gboolean     gdk_gl_config_has_accum_buffer       (GdkGLConfig     *glconfig);
+gboolean gdk_gl_config_has_accum_buffer(GdkGLConfig *glconfig);
 
 G_END_DECLS
 

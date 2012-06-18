@@ -27,28 +27,21 @@
 
 G_BEGIN_DECLS
 
-gboolean      gtk_widget_set_gl_capability (GtkWidget    *widget,
-                                            GdkGLConfig  *glconfig,
-                                            GdkGLContext *share_list,
-                                            gboolean      direct,
-                                            int           render_type);
+gboolean gtk_widget_set_gl_capability(GtkWidget *widget, GdkGLConfig *glconfig, GdkGLContext *share_list, gboolean direct, int render_type);
 
-gboolean      gtk_widget_is_gl_capable     (GtkWidget    *widget);
+gboolean gtk_widget_is_gl_capable(GtkWidget *widget);
 
 
-GdkGLConfig  *gtk_widget_get_gl_config     (GtkWidget    *widget);
+GdkGLConfig *gtk_widget_get_gl_config(GtkWidget *widget);
 
-GdkGLContext *gtk_widget_create_gl_context (GtkWidget    *widget,
-                                            GdkGLContext *share_list,
-                                            gboolean      direct,
-                                            int           render_type);
+GdkGLContext *gtk_widget_create_gl_context(GtkWidget *widget, GdkGLContext *share_list, gboolean direct, int render_type);
 
-GdkGLContext *gtk_widget_get_gl_context    (GtkWidget    *widget);
+GdkGLContext *gtk_widget_get_gl_context(GtkWidget *widget);
 
-GdkGLWindow  *gtk_widget_get_gl_window     (GtkWidget    *widget);
+GdkGLWindow *gtk_widget_get_gl_window(GtkWidget *widget);
 
-#define       gtk_widget_get_gl_drawable(widget)        \
-  GDK_GL_DRAWABLE (gtk_widget_get_gl_window (widget))
+#define gtk_widget_get_gl_drawable(widget) \
+	GDK_GL_DRAWABLE (gtk_widget_get_gl_window (widget))
 
 G_END_DECLS
 

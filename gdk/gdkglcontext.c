@@ -23,56 +23,52 @@
 
 gboolean _gdk_gl_context_force_indirect = FALSE;
 
-static void gdk_gl_context_class_init (GdkGLContextClass *klass);
-static void gdk_gl_context_finalize   (GObject           *object);
+static void gdk_gl_context_class_init(GdkGLContextClass *klass);
+static void gdk_gl_context_finalize(GObject *object);
 
 static gpointer parent_class = NULL;
 
-GType
-gdk_gl_context_get_type (void)
+GType gdk_gl_context_get_type(void)
 {
-  static GType type = 0;
+	static GType type = 0;
 
-  if (!type)
-    {
-      static const GTypeInfo type_info = {
-        sizeof (GdkGLContextClass),
-        (GBaseInitFunc) NULL,
-        (GBaseFinalizeFunc) NULL,
-        (GClassInitFunc) gdk_gl_context_class_init,
-        (GClassFinalizeFunc) NULL,
-        NULL,                   /* class_data */
-        sizeof (GdkGLContext),
-        0,                      /* n_preallocs */
-        (GInstanceInitFunc) NULL
-      };
+	if (!type)
+	{
+		static const GTypeInfo type_info =
+		{
+			sizeof (GdkGLContextClass),
+			(GBaseInitFunc)NULL,
+			(GBaseFinalizeFunc)NULL,
+			(GClassInitFunc)gdk_gl_context_class_init,
+			(GClassFinalizeFunc)NULL,
+			NULL, /* class_data */
+			sizeof (GdkGLContext),
+			0, /* n_preallocs */
+			(GInstanceInitFunc)NULL
+		};
 
-      type = g_type_register_static (G_TYPE_OBJECT,
-                                     "GdkGLContext",
-                                     &type_info, 0);
-    }
+		type = g_type_register_static(G_TYPE_OBJECT, "GdkGLContext", &type_info, 0);
+	}
 
-  return type;
+	return type;
 }
 
-static void
-gdk_gl_context_class_init (GdkGLContextClass *klass)
+static void gdk_gl_context_class_init(GdkGLContextClass *klass)
 {
-  GObjectClass *object_class = G_OBJECT_CLASS (klass);
+	GObjectClass *object_class = G_OBJECT_CLASS(klass);
 
-  GDK_GL_NOTE_FUNC_PRIVATE ();
+	GDK_GL_NOTE_FUNC_PRIVATE();
 
-  parent_class = g_type_class_peek_parent (klass);
+	parent_class = g_type_class_peek_parent(klass);
 
-  object_class->finalize = gdk_gl_context_finalize;
+	object_class->finalize = gdk_gl_context_finalize;
 }
 
-static void
-gdk_gl_context_finalize (GObject *object)
+static void gdk_gl_context_finalize(GObject *object)
 {
-  GDK_GL_NOTE_FUNC_PRIVATE ();
+	GDK_GL_NOTE_FUNC_PRIVATE();
 
-  G_OBJECT_CLASS (parent_class)->finalize (object);
+	G_OBJECT_CLASS(parent_class)->finalize(object);
 }
 
 /**
@@ -89,18 +85,11 @@ gdk_gl_context_finalize (GObject *object)
  *
  * Return value: the new #GdkGLContext.
  **/
-GdkGLContext *
-gdk_gl_context_new (GdkGLDrawable *gldrawable,
-                    GdkGLContext  *share_list,
-                    gboolean       direct,
-                    int            render_type)
+GdkGLContext *gdk_gl_context_new(GdkGLDrawable *gldrawable, GdkGLContext *share_list, gboolean direct, int render_type)
 {
-  g_return_val_if_fail (GDK_IS_GL_DRAWABLE (gldrawable), NULL);
+	g_return_val_if_fail(GDK_IS_GL_DRAWABLE(gldrawable), NULL);
 
-  return GDK_GL_DRAWABLE_GET_CLASS (gldrawable)->create_new_context (gldrawable,
-                                                                     share_list,
-                                                                     direct,
-                                                                     render_type);
+	return GDK_GL_DRAWABLE_GET_CLASS(gldrawable)->create_new_context(gldrawable, share_list, direct, render_type);
 }
 
 /**
@@ -110,11 +99,10 @@ gdk_gl_context_new (GdkGLDrawable *gldrawable,
  * Destroys the OpenGL resources associated with @glcontext and
  * decrements @glcontext's reference count.
  **/
-void
-gdk_gl_context_destroy (GdkGLContext *glcontext)
+void gdk_gl_context_destroy(GdkGLContext *glcontext)
 {
-  g_return_if_fail (GDK_IS_GL_CONTEXT (glcontext));
+	g_return_if_fail(GDK_IS_GL_CONTEXT(glcontext));
 
-  _gdk_gl_context_destroy (glcontext);
-  g_object_unref (G_OBJECT (glcontext));
+	_gdk_gl_context_destroy(glcontext);
+	g_object_unref(G_OBJECT(glcontext));
 }

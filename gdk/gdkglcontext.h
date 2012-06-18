@@ -26,47 +26,42 @@ G_BEGIN_DECLS
 
 typedef struct _GdkGLContextClass GdkGLContextClass;
 
-#define GDK_TYPE_GL_CONTEXT              (gdk_gl_context_get_type ())
-#define GDK_GL_CONTEXT(object)           (G_TYPE_CHECK_INSTANCE_CAST ((object), GDK_TYPE_GL_CONTEXT, GdkGLContext))
-#define GDK_GL_CONTEXT_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST ((klass), GDK_TYPE_GL_CONTEXT, GdkGLContextClass))
-#define GDK_IS_GL_CONTEXT(object)        (G_TYPE_CHECK_INSTANCE_TYPE ((object), GDK_TYPE_GL_CONTEXT))
-#define GDK_IS_GL_CONTEXT_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE ((klass), GDK_TYPE_GL_CONTEXT))
-#define GDK_GL_CONTEXT_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS ((obj), GDK_TYPE_GL_CONTEXT, GdkGLContextClass))
+	#define GDK_TYPE_GL_CONTEXT              (gdk_gl_context_get_type())
+	#define GDK_GL_CONTEXT(object)           (G_TYPE_CHECK_INSTANCE_CAST((object), GDK_TYPE_GL_CONTEXT, GdkGLContext))
+	#define GDK_GL_CONTEXT_CLASS(klass)      (G_TYPE_CHECK_CLASS_CAST((klass), GDK_TYPE_GL_CONTEXT, GdkGLContextClass))
+	#define GDK_IS_GL_CONTEXT(object)        (G_TYPE_CHECK_INSTANCE_TYPE((object), GDK_TYPE_GL_CONTEXT))
+	#define GDK_IS_GL_CONTEXT_CLASS(klass)   (G_TYPE_CHECK_CLASS_TYPE((klass), GDK_TYPE_GL_CONTEXT))
+	#define GDK_GL_CONTEXT_GET_CLASS(obj)    (G_TYPE_INSTANCE_GET_CLASS((obj), GDK_TYPE_GL_CONTEXT, GdkGLContextClass))
 
 struct _GdkGLContext
 {
-  GObject parent_instance;
+	GObject parent_instance;
 };
 
 struct _GdkGLContextClass
 {
-  GObjectClass parent_class;
+	GObjectClass parent_class;
 };
 
-GType          gdk_gl_context_get_type        (void);
+GType gdk_gl_context_get_type(void);
 
-GdkGLContext  *gdk_gl_context_new             (GdkGLDrawable *gldrawable,
-                                               GdkGLContext  *share_list,
-                                               gboolean       direct,
-                                               int            render_type);
+GdkGLContext *gdk_gl_context_new(GdkGLDrawable *gldrawable, GdkGLContext *share_list, gboolean direct, int render_type);
 
-void           gdk_gl_context_destroy         (GdkGLContext  *glcontext);
+void gdk_gl_context_destroy(GdkGLContext *glcontext);
 
-gboolean       gdk_gl_context_copy            (GdkGLContext  *glcontext,
-                                               GdkGLContext  *src,
-                                               unsigned long  mask);
+gboolean gdk_gl_context_copy(GdkGLContext *glcontext, GdkGLContext *src, unsigned long mask);
 
-GdkGLDrawable *gdk_gl_context_get_gl_drawable (GdkGLContext  *glcontext);
+GdkGLDrawable *gdk_gl_context_get_gl_drawable(GdkGLContext *glcontext);
 
-GdkGLConfig   *gdk_gl_context_get_gl_config   (GdkGLContext  *glcontext);
+GdkGLConfig *gdk_gl_context_get_gl_config(GdkGLContext *glcontext);
 
-GdkGLContext  *gdk_gl_context_get_share_list  (GdkGLContext  *glcontext);
+GdkGLContext *gdk_gl_context_get_share_list(GdkGLContext *glcontext);
 
-gboolean       gdk_gl_context_is_direct       (GdkGLContext  *glcontext);
+gboolean gdk_gl_context_is_direct(GdkGLContext *glcontext);
 
-int            gdk_gl_context_get_render_type (GdkGLContext  *glcontext);
+int gdk_gl_context_get_render_type(GdkGLContext *glcontext);
 
-GdkGLContext  *gdk_gl_context_get_current     (void);
+GdkGLContext *gdk_gl_context_get_current(void);
 
 G_END_DECLS
 
